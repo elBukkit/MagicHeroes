@@ -1,0 +1,5 @@
+name: MagicHeroes
+version: ${project.version}
+authors: [NathanWolf]
+main: com.elmakers.mine.bukkit.heroes.MagicHeroesPlugin
+depend: [Heroes,Magic]
