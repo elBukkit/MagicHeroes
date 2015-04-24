@@ -8,9 +8,15 @@ import com.herocraftonline.heroes.characters.skill.Skill;
 import javassist.ClassClassPath;
 import javassist.ClassPool;
 import javassist.CtClass;
+import javassist.LoaderClassPath;
 import org.bukkit.Bukkit;
+import org.bukkit.Server;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
 
 public class MagicHeroesPlugin extends JavaPlugin {
     private MagicAPI magicAPI = null;
@@ -30,14 +36,44 @@ public class MagicHeroesPlugin extends JavaPlugin {
 
         try {
             ClassPool pool = ClassPool.getDefault();
+
+            URLClassLoader loader = (URLClassLoader)(heroes.getClass().getClassLoader());
+
+            while (loader != null)
+            {
+                URL[] urls = loader.getURLs();
+                for (URL url : urls) {
+                    String jarFile = url.toString().substring(5);
+                    org.bukkit.Bukkit.getLogger().info("Adding: " + jarFile);
+                    //URLClassPath path = new javassist.URLClassPath(url.getHost(), url.getPort(), url.getPath(), url.getFile());
+                    pool.insertClassPath(jarFile);
+                }
+                loader = (URLClassLoader)loader.getParent();
+            }
+            ClassClassPath heroesPath = new javassist.ClassClassPath(heroes.getClass());
+            pool.insertClassPath(heroesPath);
+
             ClassClassPath magicPath = new ClassClassPath(SpellSkill.class);
             pool.insertClassPath(magicPath);
-            ClassClassPath heroesPath = new ClassClassPath(ActiveSkill.class);
-            pool.insertClassPath(heroesPath);
-            CtClass cc = pool.get("com.elmakers.mine.bukkit.heroes.SpellSkill");
-            cc.setName("Test-SpellSkill");
+            //pool.insertClassPath("/Users/nathan/Servers/elHeroes/plugins/Heroes.jar");
 
-            SkillRegistrar.registerSkill(this, (Class<? extends Skill>)cc.toClass());
+            pool.appendClassPath(new LoaderClassPath(org.bukkit.Bukkit.class.getClassLoader()));
+
+            String path = new File(Server.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getAbsolutePath();
+            System.out.println("Attempting Instrumentation to " + path);
+            pool.insertClassPath(path);
+
+            String magicPath2 = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getAbsolutePath();
+            System.out.println("Attempting Instrumentation to " + magicPath2);
+            pool.insertClassPath(magicPath2);
+
+            String skillPath = new File(ActiveSkill.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getAbsolutePath();
+            System.out.println("Attempting Instrumentation to " + skillPath);
+            pool.insertClassPath(skillPath);
+
+            CtClass spellClass = pool.get("com.elmakers.mine.bukkit.heroes.SpellSkill");
+            spellClass.setName("Test-SpellSkill");
+            SkillRegistrar.registerSkill(this, (Class<? extends Skill>)spellClass.toClass());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
