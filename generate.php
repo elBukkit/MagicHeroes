@@ -38,6 +38,9 @@ foreach ($spellConfigs as $spellKey => $spellConfig) {
     if (strpos($spellKey, '|') !== false) continue;
     if ($spellKey == 'default' || $spellKey == 'override') continue;
     if (isset($spellConfig['hidden']) && $spellConfig['hidden']) continue;
+    if (isset($spellConfig['category']) && (
+        $spellConfig['category'] == 'engineering'
+        || $spellConfig['category'] == 'automata')) continue;
     echo "Generating skill for " . $spellKey . "\n";
 
     $source = 'src';
