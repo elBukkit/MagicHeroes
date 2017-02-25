@@ -40,7 +40,11 @@ foreach ($spellConfigs as $spellKey => $spellConfig) {
     if (isset($spellConfig['hidden']) && $spellConfig['hidden']) continue;
     if (isset($spellConfig['category']) && (
         $spellConfig['category'] == 'engineering'
-        || $spellConfig['category'] == 'automata')) continue;
+        || $spellConfig['category'] == 'automata')
+        || $spellConfig['category'] == 'shop') continue;
+    if (isset($spellConfig['inherit']) && (
+            $spellConfig['inherit'] == 'buyshop'
+            || $spellConfig['inherit'] == 'sellshop')) continue;
     echo "Generating skill for " . $spellKey . "\n";
 
     $source = 'src';
