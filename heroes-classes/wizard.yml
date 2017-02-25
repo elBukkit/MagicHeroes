@@ -1,0 +1,100 @@
+name: Wizard
+default: false
+parents:
+    strong: []
+    weak: []
+primary: true
+secondary: false
+description: Wield powerful magic
+#Runs a cmd as console or not on selection of this class.
+run-command:
+  as-console: true
+  #you can have multiple cmds run
+  #use {player_name} for plugins who dont support @p, etc.
+  command:
+    -  give @p diamond
+    -  give @p stick
+base-attributes:
+    STRENGTH: 1
+    CONSTITUTION: 2
+    ENDURANCE: 3
+    DEXTERITY: 4
+    INTELLECT: 8
+    WISDOM: 8
+    CHARISMA: 3
+permitted-armor:
+- CHAIN_MAIL
+permitted-weapon:
+- WOOD
+- STONE_PICKAXE
+- STONE_AXE
+- STONE_SPADE
+- STONE_HOE
+- IRON_PICKAXE
+item-damage:
+  STONE_HOE: 2
+  IRON_HOE: 2.5
+  GOLD_HOE: 3
+  DIAMOND_HOE: 4
+item-damage-level:
+  STONE_HOE: 0.1
+  IRON_HOE: 0.15
+  GOLD_HOE: 0.20
+  DIAMOND_HOE: 0.25
+permitted-skills:
+    Recall:
+        level: 5
+        mana: 10
+        cooldown: 10000
+        health-cost: 10
+        delay: 5000
+    Blink:
+        level: 20
+    Missile:
+        level: 1
+        damage: 4
+        cooldown: 500
+        slow-duration: 2000
+        mana: 5
+    Arrow:
+        level: 2
+        duration: 8000
+        max-distance: 15
+        cooldown: 30000
+        mana: 25
+    Fireball:
+        level: 20
+        mana: 50
+        cooldown: 25000
+        damage: 10
+        fire-ticks: 5
+    Push:
+        level: 10
+        radius: 1
+        regen-multiplier: 2.0
+        duration: 300000
+        mana: 40
+        cooldown: 301000
+    Fling:
+        level: 30
+        max-distance: 10
+        cooldown: 20000
+    Torture:
+        level: 40
+        mana: 100
+        duration: 10000
+experience-sources:
+- KILLING
+- PVP
+- QUESTING
+expmodifier: 1.0
+base-max-health: 21.0
+max-health-per-level: 0.25
+base-max-mana: 125
+max-mana-per-level: 1
+mana-regen: 2
+mana-regen-per-level: .1
+expLoss: 0.007
+wildcard-permission: true
+tier: 1
+recipes: [ default ]

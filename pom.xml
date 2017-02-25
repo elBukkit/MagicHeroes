@@ -16,14 +16,7 @@
             <url>LICENSE</url>
         </license>
     </licenses>
-  
-  	<scm>
-    	<connection>scm:git:git://github.com/elBukkit/MagicArenas.git</connection>
-    	<developerConnection>scm:git:git@github.com:elBukkit/MagicArenas.git</developerConnection>
-    	<url>https://github.com/elBukkit/MagicArenas</url>
-    	<tag>master</tag>
-  	</scm>
-  	
+
 	<properties>
 		<build.version>1.0</build.version>
         	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,8 +31,8 @@
 		</dependency>
         <dependency>
             <groupId>com.elmakers.mine.bukkit</groupId>
-            <artifactId>MagicLib</artifactId>
-            <version>2.9</version>
+            <artifactId>MagicAPI</artifactId>
+            <version>6.7-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -48,11 +41,13 @@
             <version>1.5.5.5-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!--
         <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
             <version>3.12.1.GA</version>
         </dependency>
+        -->
     </dependencies>
 	<repositories>
        <repository>
@@ -64,12 +59,8 @@
             <url>http://maven.elmakers.com/repository/</url>
         </repository>
         <repository>
-            <id>Heroes-Snapshots</id>
-            <url>http://nexus.theyeticave.net/content/repositories/pub_snapshots/</url>
-        </repository>
-        <repository>
             <id>Heroes</id>
-            <url>http://nexus.theyeticave.net/content/repositories/pub_releases/</url>
+            <url>http://nexus.hc.to/content/repositories/pub_releases</url>
         </repository>
     </repositories>
 	<build>
@@ -88,27 +79,6 @@
                     <source>1.6</source>
                     <target>1.6</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <relocations>
-                                <relocation>
-                                    <pattern>javassist</pattern>
-                                    <shadedPattern>com.elmakers.mine.bukkit.javassist</shadedPattern>
-                                </relocation>
-                            </relocations>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
 	</build>
