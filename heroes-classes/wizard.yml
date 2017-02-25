@@ -23,7 +23,7 @@ base-attributes:
     WISDOM: 8
     CHARISMA: 3
 permitted-armor:
-- CHAIN_MAIL
+- CHAINMAIL
 permitted-weapon:
 - WOOD
 - STONE_PICKAXE
@@ -50,6 +50,7 @@ permitted-skills:
         delay: 5000
     Blink:
         level: 20
+        max-distance: 5
     Missile:
         level: 1
         damage: 4
@@ -66,8 +67,7 @@ permitted-skills:
         level: 20
         mana: 50
         cooldown: 25000
-        damage: 10
-        fire-ticks: 5
+        size: 10
     Push:
         level: 10
         radius: 1
@@ -83,6 +83,12 @@ permitted-skills:
         level: 40
         mana: 100
         duration: 10000
+    Blob:
+        level: 10
+        mana: 100
+        duration: 10000
+        radius: 4
+        brush: stained_clay
 experience-sources:
 - KILLING
 - PVP
