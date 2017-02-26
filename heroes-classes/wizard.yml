@@ -89,6 +89,10 @@ permitted-skills:
         duration: 10000
         radius: 4
         brush: stained_clay
+    Platform:
+        level: 10
+        mana: 100
+        duration: 10000
 experience-sources:
 - KILLING
 - PVP
