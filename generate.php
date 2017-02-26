@@ -41,7 +41,8 @@ foreach ($spellConfigs as $spellKey => $spellConfig) {
     if (isset($spellConfig['category']) && (
         $spellConfig['category'] == 'engineering'
         || $spellConfig['category'] == 'automata')
-        || $spellConfig['category'] == 'shop') continue;
+        || $spellConfig['category'] == 'shop'
+        || $spellConfig['category'] == 'npc') continue;
     if (isset($spellConfig['inherit']) && (
             $spellConfig['inherit'] == 'buyshop'
             || $spellConfig['inherit'] == 'sellshop')) continue;
@@ -65,7 +66,7 @@ foreach ($spellConfigs as $spellKey => $spellConfig) {
     }
 
     $className = "Skill" . $spellKey;
-    $skillFileName = $dest . '/main/java/com/elmakers/mine/bukkit/heroes/SkillTest.java';
+    $skillFileName = $dest . '/main/java/com/elmakers/mine/bukkit/heroes/skills/SkillTest.java';
     $skillFile = file_get_contents($skillFileName);
     unlink($skillFileName);
     $skillFile = str_replace('Test', $spellKey, $skillFile);
