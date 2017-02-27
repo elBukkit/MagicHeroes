@@ -68,7 +68,6 @@ permitted-skills:
         level: 20
         mana: 50
         cooldown: 25000
-        size: 10
     Push:
         level: 10
         radius: 1
