@@ -51,7 +51,7 @@ permitted-skills:
     Blink:
         level: 20
         max-distance: 5
-    Missile:
+    MagicMissile:
         level: 1
         damage: 4
         cooldown: 500
