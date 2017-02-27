@@ -32,7 +32,7 @@
         <dependency>
             <groupId>com.elmakers.mine.bukkit.plugins</groupId>
             <artifactId>Magic</artifactId>
-            <version>6.7-SNAPSHOT</version>
+            <version>6.7</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
