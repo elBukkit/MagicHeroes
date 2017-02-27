@@ -51,6 +51,7 @@ permitted-skills:
     Blink:
         level: 20
         max-distance: 5
+        tier: 2
     MagicMissile:
         level: 1
         damage: 4
@@ -72,13 +73,14 @@ permitted-skills:
         level: 10
         radius: 1
         regen-multiplier: 2.0
-        duration: 300000
         mana: 40
-        cooldown: 301000
+        cooldown: 1000
+        tier: 4
     Fling:
         level: 30
         max-distance: 10
         cooldown: 20000
+        tier: 4
     Torture:
         level: 40
         mana: 100
@@ -88,7 +90,8 @@ permitted-skills:
         mana: 100
         duration: 10000
         radius: 4
-        brush: stained_clay
+        tier: 3
+        brush: stone
     Platform:
         level: 10
         mana: 100
