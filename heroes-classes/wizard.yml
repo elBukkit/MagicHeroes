@@ -95,6 +95,15 @@ permitted-skills:
         level: 10
         mana: 100
         duration: 10000
+    IceBolt:
+        level: 10
+        mana: 10
+    FireArrow:
+        level: 10
+        mana: 10
+    Bolt:
+        level: 10
+        mana: 10
 experience-sources:
 - KILLING
 - PVP
