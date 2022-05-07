@@ -749,7 +749,7 @@ class Spyc {
       foreach ($explode as $key => $value) {
         if (strpos($value,'YAMLSeq') !== false) {
           foreach ($seqs as $seqk => $seq) {
-            $explode[$key] = str_replace(('YAMLSeq'.$seqk.'s'),$seq,$value);
+            $explode[$key] = preg_replace(('YAMLSeq'.$seqk.'s'),$seq,$value);
             $value = $explode[$key];
           }
         }
@@ -761,7 +761,7 @@ class Spyc {
       foreach ($explode as $key => $value) {
         if (strpos($value,'YAMLMap') !== false) {
           foreach ($maps as $mapk => $map) {
-            $explode[$key] = str_replace(('YAMLMap'.$mapk.'s'), $map, $value);
+            $explode[$key] = preg_replace(('YAMLMap'.$mapk.'s'), $map, $value);
             $value = $explode[$key];
           }
         }
