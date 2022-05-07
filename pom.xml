@@ -64,7 +64,6 @@
         </repository>
     </repositories>
 	<build>
-        <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
 		<resources>
 		    <resource>
 		        <directory>${project.basedir}/src/main/resources/</directory>
