@@ -227,13 +227,13 @@ class Spyc {
     // and options soon.  And better support for folding.
 
     // New features and options.
-    if ($indent === false or !is_numeric($indent)) {
+    if ($indent === false || !is_numeric($indent)) {
       $this->_dumpIndent = 2;
     } else {
       $this->_dumpIndent = $indent;
     }
 
-    if ($wordwrap === false or !is_numeric($wordwrap)) {
+    if ($wordwrap === false|| !is_numeric($wordwrap)) {
       $this->_dumpWordWrap = 40;
     } else {
       $this->_dumpWordWrap = $wordwrap;
@@ -562,7 +562,7 @@ class Spyc {
     $line = trim($line);
     if (!$line) {return array();}
 
-    $array = array();
+ //   $array = array();
 
     $group = $this->nodeContainsGroup($line);
     if ($group) {
@@ -705,7 +705,7 @@ class Spyc {
     $regex = '/("")|(\'\')/';
     if (preg_match_all($regex,$inline,$strings)) {
       $saved_empties = $strings[0];
-      $inline  = preg_replace($regex,'YAMLEmpty',$inline);
+      $inline  = str_replace($regex,'YAMLEmpty',$inline);
     }
     unset($regex);
 
@@ -713,7 +713,7 @@ class Spyc {
     $regex = '/(?:(")|(?:\'))((?(1)[^"]+|[^\']+))(?(1)"|\')/';
     if (preg_match_all($regex,$inline,$strings)) {
       $saved_strings = $strings[0];
-      $inline  = preg_replace($regex,'YAMLString',$inline);
+      $inline  = str_replace($regex,'YAMLString',$inline);
     }
     unset($regex);
 
@@ -774,7 +774,6 @@ class Spyc {
       foreach ($explode as $key => $value) {
         while (strpos($value,'YAMLString') !== false) {
           $explode[$key] = preg_replace('/YAMLString/',$saved_strings[$stringi],$value, 1);
-          //$explode[$key] = str_replace('/YAMLString/',$saved_strings[$stringi],$value, 1);
           unset($saved_strings[$stringi]);
           ++$stringi;
           $value = $explode[$key];
