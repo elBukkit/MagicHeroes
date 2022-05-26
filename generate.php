@@ -95,7 +95,7 @@ foreach ($spellConfigs as $spellKey => $spellConfig) {
 
     chdir($destRoot);
     $jarName = "MagicSkill-" . $spellKey;
-    system('mvn -Djar.finalName=' . $jarName . ' package');
+    system('mvn -Djar.finalName=' . $jarName . ' clean package');
     rename('target/' . $jarName . '.jar', '../../target/' . $jarName . '.jar');
     chdir('../..');
 }

@@ -56,11 +56,11 @@
       </repository>
         <repository>
             <id>elMakers</id>
-            <url>http://maven.elmakers.com/repository/</url>
+            <url>https://maven.elmakers.com/repository/</url>
         </repository>
         <repository>
             <id>Heroes</id>
-            <url>http://nexus.hc.to/content/repositories/pub_releases/</url>
+            <url>https://nexus.hc.to/content/repositories/pub_releases/</url>
         </repository>
     </repositories>
 	<build>

@@ -1033,9 +1033,8 @@ class Spyc {
 
 
   private static function isComment ($line) {
-    if (!$line) return false;
-    if ($line[0] == '#') {return true;}
-    if (trim($line, " \r\n\t") == '---') {return true;}
+    if (!$line) {return false;}
+    if (($line[0] == '#') || (trim($line, " \r\n\t") == '---')) {return true;}
     return false;
   }
 
@@ -1063,8 +1062,8 @@ class Spyc {
   private static function unquote ($value) {
 //    if (!$value) return $value;
 //    if (!is_string($value)) return $value;
-    if ($value[0] == '\'') return trim ($value, '\'');
-    if ($value[0] == '"') return trim ($value, '"');
+    if ($value[0] == '\'') {return trim ($value, '\'');}
+    if ($value[0] == '"') {return trim ($value, '"');}
     return $value;
   }
 
@@ -1136,7 +1135,7 @@ class Spyc {
 
 
   private function returnArrayElement ($line) {
-     if (strlen($line) <= 1) return array(array()); // Weird %)
+     if (strlen($line) <= 1) {return array(array());} // Weird %)
      $array = array();
      $value   = trim(substr($line,1));
      $value   = $this->_toType($value);
@@ -1150,19 +1149,19 @@ class Spyc {
 
   private function nodeContainsGroup ($line) {
     $symbolsForReference = 'A-z0-9_\-';
-    if (strpos($line, '&') === false && strpos($line, '*') === false) return false; // Please die fast ;-)
-    if ($line[0] == '&' && preg_match('/^(&['.$symbolsForReference.']+)/', $line, $matches)) return $matches[1];
-    if ($line[0] == '*' && preg_match('/^(\*['.$symbolsForReference.']+)/', $line, $matches)) return $matches[1];
-    if (preg_match('/(&['.$symbolsForReference.']+)$/', $line, $matches)) return $matches[1];
-    if (preg_match('/(\*['.$symbolsForReference.']+$)/', $line, $matches)) return $matches[1];
-    if (preg_match ('#^\s*<<\s*:\s*(\*[^\s]+).*$#', $line, $matches)) return $matches[1];
+    if (strpos($line, '&') === false && strpos($line, '*') === false) {return false;} // Please die fast ;-)
+    if ((preg_match ('#^\s*<<\s*:\s*(\*[^\s]+).*$#', $line, $matches)) ||
+    ($line[0] == '&' && preg_match('/^(&['.$symbolsForReference.']+)/', $line, $matches)) ||
+    ($line[0] == '*' && preg_match('/^(\*['.$symbolsForReference.']+)/', $line, $matches)) ||
+    (preg_match('/(&['.$symbolsForReference.']+)$/', $line, $matches)) ||
+    (preg_match('/(\*['.$symbolsForReference.']+$)/', $line, $matches))) {return $matches[1];}
     return false;
 
   }
 
   private function addGroup ($line, $group) {
-    if ($group[0] == '&') $this->_containsGroupAnchor = substr ($group, 1);
-    if ($group[0] == '*') $this->_containsGroupAlias = substr ($group, 1);
+    if ($group[0] == '&') {$this->_containsGroupAnchor = substr ($group, 1);}
+    if ($group[0] == '*') {$this->_containsGroupAlias = substr ($group, 1);}
     //print_r ($this->path);
   }
 
@@ -1177,9 +1176,9 @@ class Spyc {
 // The syntax is the following: php Spyc.php spyc.yaml
 
 do {
-  if (PHP_SAPI != 'cli') break;
-  if (empty ($_SERVER['argc']) || $_SERVER['argc'] < 2) break;
-  if (empty ($_SERVER['PHP_SELF']) || FALSE === strpos ($_SERVER['PHP_SELF'], 'Spyc.php') ) break;
+  if ((PHP_SAPI != 'cli') || (empty ($_SERVER['argc']) ||
+  $_SERVER['argc'] < 2) ||
+  (empty ($_SERVER['PHP_SELF']) || FALSE === strpos ($_SERVER['PHP_SELF'], 'Spyc.php') )) {break;}
   $file = $argv[1];
   echo json_encode (spyc_load_file ($file));
 } while (0);
