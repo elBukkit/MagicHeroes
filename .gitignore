@@ -9,3 +9,5 @@ dependency-reduced-pom.xml
 buildNumber.properties
 *.iml
 .idea
+.vscode
+heroes-spells

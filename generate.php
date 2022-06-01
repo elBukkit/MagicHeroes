@@ -20,8 +20,8 @@ $spellConfigs = array();
 
 $spellFiles = new DirectoryIterator($spellConfigFolder);
 foreach ($spellFiles as $spellFile) {
-    if ($spellFile->isDir()) continue;
-    if ($spellFile->getExtension() !== 'yml') continue;
+    if ($spellFile->isDir()) {continue;}
+    if ($spellFile->getExtension() !== 'yml') {continue;}
     $spellConfigFile = $spellFile->getPathname();
     echo "Looking at $spellConfigFile\n";
     $spellConfig = spyc_load_file($spellConfigFile);
@@ -50,18 +50,16 @@ if (file_exists($buildDir)) {
 mkdir($buildDir);
 
 foreach ($spellConfigs as $spellKey => $spellConfig) {
-    if (strpos($spellKey, '|') !== false) continue;
-    if ($spellKey == 'default' || $spellKey == 'override') continue;
-    if (isset($spellConfig['hidden']) && $spellConfig['hidden']) continue;
-    if (isset($spellConfig['category'])) {
-        if ($spellConfig['category'] == 'engineering'
-        || $spellConfig['category'] == 'automata'
-        || $spellConfig['category'] == 'shop'
-        || $spellConfig['category'] == 'npc') continue;
-    }
-    if (isset($spellConfig['inherit']) && (
-            $spellConfig['inherit'] == 'buyshop'
-            || $spellConfig['inherit'] == 'sellshop')) continue;
+    if (strpos($spellKey, '|') !== false) {continue;}
+    if ($spellKey == 'default' || $spellKey == 'override') {continue;}
+    if (isset($spellConfig['hidden']) && $spellConfig['hidden']) {continue;}
+    if ((isset($spellConfig['category'])) && ($spellConfig['category'] == 'engineering'
+    || $spellConfig['category'] == 'automata'
+    || $spellConfig['category'] == 'shop'
+    || $spellConfig['category'] == 'npc')) {continue;}
+    if  (isset($spellConfig['inherit']) && (
+        $spellConfig['inherit'] == 'buyshop'
+        || $spellConfig['inherit'] == 'sellshop')) {continue;}
     echo "Generating skill for " . $spellKey . "\n";
 
     $source = 'src';
@@ -97,7 +95,7 @@ foreach ($spellConfigs as $spellKey => $spellConfig) {
 
     chdir($destRoot);
     $jarName = "MagicSkill-" . $spellKey;
-    system('mvn -Djar.finalName=' . $jarName . ' package');
+    system('mvn -Djar.finalName=' . $jarName . ' clean package');
     rename('target/' . $jarName . '.jar', '../../target/' . $jarName . '.jar');
     chdir('../..');
 }
